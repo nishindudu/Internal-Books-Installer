@@ -1,0 +1,16 @@
+services:
+  app:
+    image: internalbooks:test
+    container_name: internalbooks
+    ports:
+      - "80:80"
+    
+    volumes:
+      - app_persistent_data:/app:rw
+    working_dir: /app
+    entrypoint: ["/app/main.bin"]
+    
+    restart: unless-stopped
+
+volumes:
+  app_persistent_data:
