@@ -1,7 +1,7 @@
 body {
     height: 97vh;
     background-image: linear-gradient(to bottom, #1f1d1d, #52015a);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace !important;
 }
 
 .container {
