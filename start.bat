@@ -4,6 +4,7 @@ echo Starting InternalBooks...
 docker-compose start
 if %ERRORLEVEL% NEQ 0 (
     echo Failed to start InternalBooks using Docker Compose. Error code: %ERRORLEVEL%
+    pause
     exit /b %ERRORLEVEL%
 )
 

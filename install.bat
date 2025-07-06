@@ -12,18 +12,21 @@ set /p agree="Do you agree to the terms of the EULA? (yes/no): "
 if /i "%agree%" NEQ "yes" (
     echo You must agree to the EULA to proceed with the installation.
     echo Installation aborted.
+    pause
     exit /b 1
 )
 
 docker pull nishindudu/internalbooks:latest
 if %ERRORLEVEL% NEQ 0 (
     echo Failed to pull the InternalBooks Docker image. Error code: %ERRORLEVEL%
+    pause
     exit /b %ERRORLEVEL%
 )
 
 docker-compose -f docker-compose.yml up -d
 if %ERRORLEVEL% NEQ 0 (
     echo Failed to start InternalBooks using Docker Compose. Error code: %ERRORLEVEL%
+    pause
     exit /b %ERRORLEVEL%
 )
 
