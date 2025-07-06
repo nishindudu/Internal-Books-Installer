@@ -1,6 +1,6 @@
 services:
   app:
-    image: internalbooks:test
+    image: nishindudu/internalbooks:latest
     container_name: internalbooks
     ports:
       - "80:80"
