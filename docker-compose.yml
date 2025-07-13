@@ -6,11 +6,11 @@ services:
       - "80:80"
     
     volumes:
-      - app_persistent_data:/app:rw
+      - app_data:/app/data:rw
     working_dir: /app
     entrypoint: ["/app/main.bin"]
     
     restart: unless-stopped
 
 volumes:
-  app_persistent_data:
+  app_data:
