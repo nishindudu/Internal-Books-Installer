@@ -19,10 +19,10 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 
-REM check if docker-compose has changed and download if needed.
-curl -s -z docker-compose.yml -w "%%{http_code}" -o docker-compose.yml "https://raw.githubusercontent.com/nishindudu/Internal-Books-Installer/refs/heads/main/docker-compose.yml" > status.tmp
+REM check if updates.txt has changed and download if needed. (Used to check for manual updates)
+curl -s -z updates.txt -w "%%{http_code}" -o updates.txt "https://raw.githubusercontent.com/nishindudu/Internal-Books-Installer/refs/heads/main/updates.txt" > status.tmp
 if %ERRORLEVEL% NEQ 0 (
-    echo Failed to download the latest docker-compose.yml. Error code: %ERRORLEVEL%
+    echo Failed to download the latest updates.txt. Error code: %ERRORLEVEL%
     pause
     exit /b %ERRORLEVEL%
 )
@@ -31,11 +31,13 @@ set /p status=<status.tmp
 del status.tmp
 
 if "%status%" NEQ "200" (
-    echo No changes detected in docker-compose.yml. Continuing with update...
+    echo No changes detected in updates.txt. Continuing with update...
 ) else (
-    echo Updated docker-compose.yml downloaded successfully.
+    echo Updated updates.txt downloaded successfully.
+    type updates.txt
+    pause
+    echo.
 )
-
 
 
 docker-compose -f docker-compose.yml up -d
